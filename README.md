@@ -46,4 +46,4 @@ logger.error(...data)
 logger.fatal(...data)
 ```
 
-It works just like built-in `console` object!
+It works just like the built-in `console` object!
