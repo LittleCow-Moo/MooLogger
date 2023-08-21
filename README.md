@@ -36,8 +36,13 @@ new MooLogger({
 # Available functions
 
 `logger.debug(...data)`
+
 `logger.info(...data)`
+
 `logger.warn(...data)`
+
 `logger.error(...data)`
+
 `logger.fatal(...data)`
+
 It works just like built-in `console` object!
