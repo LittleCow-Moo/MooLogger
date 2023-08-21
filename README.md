@@ -1,6 +1,7 @@
 # MooLogger
 
 ![Version](https://img.shields.io/github/package-json/v/LittleCow-moo/MooLogger?logo=github&style=for-the-badge) ![License](https://img.shields.io/github/license/LittleCow-moo/MooLogger?style=for-the-badge&logo=github) ![PRs](https://img.shields.io/github/issues-pr-raw/LittleCow-moo/MooLogger?logo=github&style=for-the-badge) [![Prettier](https://img.shields.io/badge/Code_Style-Prettier-ff69b4.svg?style=for-the-badge)](https://github.com/prettier/prettier)
+
 A simple, beautiful and easy to use logger!
 
 # Getting Started
