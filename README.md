@@ -29,7 +29,7 @@ new MooLogger({
       3: warn,
       4: info,
       5: debug,
-      default: true
+      default: 4
     */
   logFolder: "path/to/folder", // default: logs
   timestamp: true, // default: true
