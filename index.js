@@ -8,18 +8,34 @@ class MooLogger {
    * @param {Number} config.logLevel
    * @param {String} config.logFolder
    * @param {Boolean} config.timestamp
+   * @param {JSONObject} config.lang
    */
   constructor(
     config = {
       logLevel: 4,
       logFolder: "logs",
       timestamp: true,
+      lang: {
+        debug: "DEBUG",
+        info: "INFO",
+        warn: "WARN",
+        error: "ERROR",
+        fatal: "FATAL",
+      },
     }
   ) {
     this.config = config
-    if (this.config.logLevel == null) config.logLevel = 4
-    if (this.config.logFolder == null) config.logFolder = "logs"
-    if (this.config.timestamp == null) config.timestamp = true
+    if (this.config.logLevel == null) this.config.logLevel = 4
+    if (this.config.logFolder == null) this.config.logFolder = "logs"
+    if (this.config.timestamp == null) this.config.timestamp = true
+    if (this.config.lang == null)
+      this.config.lang = {
+        debug: "DEBUG",
+        info: "INFO",
+        warn: "WARN",
+        error: "ERROR",
+        fatal: "FATAL",
+      }
     if (!fs.existsSync(this.config.logFolder)) {
       fs.mkdirSync(this.config.logFolder, { recursive: true })
     }
@@ -53,30 +69,30 @@ class MooLogger {
    * @param {any} data Data to write into logger.
    */
   debug(...data) {
-    data.unshift(this.getTimestamp() + chalk.bgGreenBright(" DEBUG "))
+    data.unshift(this.getTimestamp() + chalk.bgGreenBright(` ${this.config.lang.debug} `))
     if (this.config.logLevel >= 5) console.debug(...data)
     data.shift()
-    this.logFile.write(`[${this.getPureTimestamp()}DEBUG] ${String(data)}\n`)
+    this.logFile.write(`[${this.getPureTimestamp()}${this.config.lang.debug}] ${String(data)}\n`)
   }
   /**
    * Prints an info message.
    * @param {any} data Data to write into logger.
    */
   info(...data) {
-    data.unshift(this.getTimestamp() + chalk.bgBlueBright(" INFO "))
+    data.unshift(this.getTimestamp() + chalk.bgBlueBright(` ${this.config.lang.info} `))
     if (this.config.logLevel >= 4) console.info(...data)
     data.shift()
-    this.logFile.write(`[${this.getPureTimestamp()}INFO] ${String(data)}\n`)
+    this.logFile.write(`[${this.getPureTimestamp()}${this.config.lang.info}] ${String(data)}\n`)
   }
   /**
    * Prints a warning message.
    * @param {any} data Data to write into logger.
    */
   warn(...data) {
-    data.unshift(this.getTimestamp() + chalk.bgYellowBright(" WARN "))
+    data.unshift(this.getTimestamp() + chalk.bgYellowBright(` ${this.config.lang.warn} `))
     if (this.config.logLevel >= 3) console.warn(...data)
     data.shift()
-    this.logFile.write(`[${this.getPureTimestamp()}WARN] ${String(data)}\n`)
+    this.logFile.write(`[${this.getPureTimestamp()}${this.config.lang.warn}] ${String(data)}\n`)
   }
   /**
    * Prints an error message.
@@ -84,7 +100,7 @@ class MooLogger {
    * I suggest putting Error object at the first parameter so it will be logged as a stack trace string.
    */
   error(...data) {
-    data.unshift(this.getTimestamp() + chalk.bgRedBright(" ERROR "))
+    data.unshift(this.getTimestamp() + chalk.bgRedBright(` ${this.config.lang.error} `))
     var original
     if (util.isError(data[1])) {
       original = data[1]
@@ -99,7 +115,7 @@ class MooLogger {
       data[0] = original
     }
     this.logFile.write(
-      `[${this.getPureTimestamp()}ERROR] ${
+      `[${this.getPureTimestamp()}${this.config.lang.error}] ${
         util.isError(data[0]) ? data[0].stack : String(data)
       }\n`
     )
@@ -110,7 +126,7 @@ class MooLogger {
    * I suggest putting Error object at the first parameter so it will be logged as a stack trace string.
    */
   fatal(...data) {
-    data.unshift(this.getTimestamp() + chalk.bgRed(" FATAL "))
+    data.unshift(this.getTimestamp() + chalk.bgRed(` ${this.config.lang.fatal} `))
     var original
     if (util.isError(data[1])) {
       original = data[1]
@@ -125,7 +141,7 @@ class MooLogger {
       data[0] = original
     }
     this.logFile.write(
-      `[${this.getPureTimestamp()}FATAL] ${
+      `[${this.getPureTimestamp()}${this.config.lang.fatal}] ${
         util.isError(data[0]) ? data[0].stack : String(data)
       }\n`
     )

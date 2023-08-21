@@ -31,8 +31,15 @@ new MooLogger({
       5: debug,
       default: 4
     */
-  logFolder: "path/to/folder", // default: logs
-  timestamp: true, // default: true
+  logFolder: "path/to/folder", // The folder path where logger will store logs, default: logs
+  timestamp: true, // Should it display timestamp? default: true
+  lang: {
+    debug: "DEBUG",
+    info: "INFO",
+    warn: "WARN",
+    error: "ERROR",
+    fatal: "FATAL",
+  }, // You can customize badge strings like this
 })
 ```
 
