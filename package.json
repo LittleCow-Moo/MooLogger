@@ -1,6 +1,6 @@
 {
   "name": "moologger",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple, beautiful and easy to use logger!",
   "main": "index.js",
   "scripts": {
