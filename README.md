@@ -129,7 +129,7 @@ const lang = {
 new MooLogger({ lang }) // register it
 ```
 
-A log folder (directory), as the name implies, it stores logs from MooLogger. Log files are named as the current timestamp.
+As the name implies, a log folder (directory) stores logs from MooLogger. Log files are named as the current timestamp.
 
 If not set, MooLogger will disable this feature.
 
@@ -139,9 +139,9 @@ new MooLogger({
 })
 ```
 
-If you prefer logging into one fixed (singular) file, you can use `logFile` instead.
+If you prefer logging into one fixed (singular) file, use `logFile` instead.
 
-Same as `logFolder`, if not set, MooLogger will disable this feature.
+Same as `logFolder`, MooLogger will disable this feature if not set.
 
 ```js
 new MooLogger({
