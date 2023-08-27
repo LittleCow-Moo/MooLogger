@@ -125,6 +125,8 @@ const lang = {
   error: "ข้อผิดพลาด",
   fatal: "致命的な誤り"
 }
+
+new MooLogger({ lang }) // register it
 ```
 
 A log folder (directory), as the name implies, it stores logs from MooLogger. Log files are named as the current timestamp.
