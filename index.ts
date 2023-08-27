@@ -73,19 +73,18 @@ class MooLogger {
       fatal: "FATAL",
     }
     lang = { ...defaultLang, ...(lang || {}) }
-    
-    if (!fs.existsSync(logFolder)) {
-      fs.mkdirSync(logFolder, { recursive: true })
-    }
 
-    if (logFolder)
+    if (logFolder) {
       this.logFile = fs.createWriteStream(
         `${logFolder}/${moment().unix()}.log`,
         {
           flags: "a",
         }
       )
-    else if (logFile)
+      if (!fs.existsSync(logFolder)) {
+        fs.mkdirSync(logFolder, { recursive: true })
+      }
+    } else if (logFile)
       this.logFile = fs.createWriteStream(logFile, {
         flags: "a"
       })

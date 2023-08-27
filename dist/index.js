@@ -44,13 +44,14 @@ var MooLogger = /** @class */ (function () {
             fatal: "FATAL",
         };
         lang = __assign(__assign({}, defaultLang), (lang || {}));
-        if (!fs.existsSync(logFolder)) {
-            fs.mkdirSync(logFolder, { recursive: true });
-        }
-        if (logFolder)
+        if (logFolder) {
             this.logFile = fs.createWriteStream("".concat(logFolder, "/").concat(moment().unix(), ".log"), {
                 flags: "a",
             });
+            if (!fs.existsSync(logFolder)) {
+                fs.mkdirSync(logFolder, { recursive: true });
+            }
+        }
         else if (logFile)
             this.logFile = fs.createWriteStream(logFile, {
                 flags: "a"
